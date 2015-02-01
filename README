@@ -1,0 +1,20 @@
+Completionist
+
+This Django application is intended to assist completionists in tracking their progress in games. The idea
+is to create checklists which you can copy down to your profile. You can then track your progress across runs
+without frustration such as "Did I get this?" or "Where is this last upgrade..."
+
+
+Implementation
+----
+
+Checklist
+  The master identifier with images, description, and so on for a checklist.
+
+ChecklistSections
+  The secotions of a checklist (optional). Can belong to other sections of a checklist.
+
+ChecklistEntries
+  Checkable entries which belong to a section. Can have an appropriate image, link, and description.
+
+
