@@ -11,6 +11,9 @@ class Checklist( models.Model ):
     description = models.TextField( blank=True )
     image = models.ImageField( blank=True )
 
+    def __str__( self ):
+        return self.name
+
 class ChecklistSection( Sortable ):
     class Meta( Sortable.Meta ):
         pass
@@ -21,6 +24,8 @@ class ChecklistSection( Sortable ):
     description = models.TextField( blank=True )
     image = models.ImageField( blank=True )
 
+    def __str__( self ):
+        return self.name
 
 class ChecklistEntry( Sortable ):
     class Meta( Sortable.Meta ):
@@ -33,6 +38,9 @@ class ChecklistEntry( Sortable ):
     description = models.TextField( blank=True )
     image = models.ImageField( blank=True )
 
+    def __str__( self ):
+        return self.name
+
 class Run( models.Model ):
     createDate = models.DateTimeField( auto_now_add=True )
     lastUpdate = models.DateTimeField( auto_now=True )
@@ -42,6 +50,9 @@ class Run( models.Model ):
 
     checklist = models.ForeignKey( Checklist )
     owner = models.ForeignKey( User )
+
+    def __str__( self ):
+        return self.name
 
 class RunProgress( models.Model ):
     run = models.ForeignKey( Run ) 

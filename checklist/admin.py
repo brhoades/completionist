@@ -1,21 +1,27 @@
 from django.contrib import admin
 from checklist.models import Checklist, ChecklistSection, ChecklistEntry, Run 
-from adminsortable.admin import SortableStackedInline, NonSortableParentAdmin
+from adminsortable.admin import SortableTabularInline, NonSortableParentAdmin
 
 admin.site.register( Run )
 
-class ChecklistEntryInline( SortableStackedInline ):
+class ChecklistEntryInline( SortableTabularInline ):
     model = ChecklistEntry
+    fields = [ 'name', 'description' ]
+    extra = 1
 
 class ChecklistSectionAdmin( NonSortableParentAdmin ):
     model = ChecklistSection
+    fields = [ 'checklist', 'name', 'description' ]
     inlines = [ ChecklistEntryInline ]
 
-class ChecklistSectionInline( SortableStackedInline ):
+class ChecklistSectionInline( SortableTabularInline ):
     model = ChecklistSection
+    fields = [ 'name', 'description' ]
+    extra = 1
 
 class ChecklistAdmin( NonSortableParentAdmin ):
     model = Checklist
+    fields = [ 'name', 'description' ]
     inlines = [ ChecklistSectionInline ]
 
 admin.site.register( Checklist, ChecklistAdmin )
