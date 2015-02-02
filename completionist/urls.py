@@ -6,5 +6,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'completionist.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
+    url( r'^admin/', include( admin.site.urls ) ),
+    url( r'^cl/', include( 'checklist.urls', namespace='checklist' ) ),
+    url( r'^', include( 'checklist.urls', namespace='checklist' ) ),
 )

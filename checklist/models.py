@@ -6,16 +6,16 @@ class Checklist( models.Model ):
     lastUpdate = models.DateTimeField( auto_now=True )
 
     name = models.CharField( max_length=100 )
-    description = models.TextField( )
-    image = models.ImageField( )
+    description = models.TextField( blank=True )
+    image = models.ImageField( blank=True )
 
 class ChecklistSection( models.Model ):
     checklist = models.ForeignKey( Checklist )
     position = models.PositiveIntegerField( db_index=True, blank=False, null=False )
 
     name = models.CharField( max_length=100 )
-    description = models.TextField( )
-    image = models.ImageField( )
+    description = models.TextField( blank=True )
+    image = models.ImageField( blank=True )
 
     class Meta( object ):
         ordering = ['position']
@@ -26,8 +26,8 @@ class ChecklistEntry( models.Model ):
     position = models.PositiveIntegerField( db_index=True, blank=False, null=False )
 
     name = models.CharField( max_length=50 )
-    description = models.TextField( )
-    image = models.ImageField( )
+    description = models.TextField( blank=True )
+    image = models.ImageField( blank=True )
 
     class Meta( object ):
         ordering = ['position']
@@ -37,7 +37,7 @@ class Run( models.Model ):
     lastUpdate = models.DateTimeField( auto_now=True )
 
     name = models.CharField( max_length=100 )
-    description = models.TextField( )
+    description = models.TextField( blank=True )
 
     checklist = models.ForeignKey( Checklist )
     owner = models.ForeignKey( User )

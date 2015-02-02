@@ -1,0 +1,9 @@
+{% if checklists %}
+<ul>
+  {% for checklist in checklists %}
+    <li><a href="/cl/{{ checklist.id }}/">{{ checklist.name }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>No checklists are added.</p>
+{% endif %}
