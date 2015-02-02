@@ -13,6 +13,8 @@ class ChecklistSectionAdmin( NonSortableParentAdmin ):
     model = ChecklistSection
     fields = [ 'checklist', 'name', 'description' ]
     inlines = [ ChecklistEntryInline ]
+    list_display = [ 'name', 'checklist' ]
+    search_fields = [ 'name', 'checklist' ]
 
 class ChecklistSectionInline( SortableTabularInline ):
     model = ChecklistSection
@@ -26,4 +28,3 @@ class ChecklistAdmin( NonSortableParentAdmin ):
 
 admin.site.register( Checklist, ChecklistAdmin )
 admin.site.register( ChecklistSection, ChecklistSectionAdmin )
-

@@ -18,7 +18,6 @@ class ChecklistSection( Sortable ):
     class Meta( Sortable.Meta ):
         pass
     checklist = models.ForeignKey( Checklist )
-    position = models.PositiveIntegerField( db_index=True, blank=False, null=False )
 
     name = models.CharField( max_length=100 )
     description = models.TextField( blank=True )
@@ -31,8 +30,6 @@ class ChecklistEntry( Sortable ):
     class Meta( Sortable.Meta ):
         pass
     section = models.ForeignKey( ChecklistSection )
-
-    position = models.PositiveIntegerField( db_index=True, blank=False, null=False )
 
     name = models.CharField( max_length=50 )
     description = models.TextField( blank=True )
