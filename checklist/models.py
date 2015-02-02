@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from adminsortable.models import Sortable
+
 
 class Checklist( models.Model ):
     createDate = models.DateTimeField( auto_now_add=True )
@@ -9,7 +11,9 @@ class Checklist( models.Model ):
     description = models.TextField( blank=True )
     image = models.ImageField( blank=True )
 
-class ChecklistSection( models.Model ):
+class ChecklistSection( Sortable ):
+    class Meta( Sortable.Meta ):
+        pass
     checklist = models.ForeignKey( Checklist )
     position = models.PositiveIntegerField( db_index=True, blank=False, null=False )
 
@@ -17,10 +21,10 @@ class ChecklistSection( models.Model ):
     description = models.TextField( blank=True )
     image = models.ImageField( blank=True )
 
-    class Meta( object ):
-        ordering = ['position']
 
-class ChecklistEntry( models.Model ):
+class ChecklistEntry( Sortable ):
+    class Meta( Sortable.Meta ):
+        pass
     section = models.ForeignKey( ChecklistSection )
 
     position = models.PositiveIntegerField( db_index=True, blank=False, null=False )
@@ -28,9 +32,6 @@ class ChecklistEntry( models.Model ):
     name = models.CharField( max_length=50 )
     description = models.TextField( blank=True )
     image = models.ImageField( blank=True )
-
-    class Meta( object ):
-        ordering = ['position']
 
 class Run( models.Model ):
     createDate = models.DateTimeField( auto_now_add=True )
