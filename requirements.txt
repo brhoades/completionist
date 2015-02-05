@@ -1,4 +1,3 @@
-django-admin-sortable2
+django-admin-sortable
 pillow
-django-nested-inlines
-django-html5-boilerplate
+django=1.7.4
