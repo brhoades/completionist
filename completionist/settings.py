@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'checklist',
     'adminsortable',
-    'dh5bp',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -94,4 +93,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.dirname( os.path.join( BASE_DIR, 'static/' ) )
+STATIC_ROOT = BASE_DIR + 'static/'

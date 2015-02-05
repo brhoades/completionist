@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from dh5bp.urls import urlpatterns as dh5bp_urls
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = patterns('',
     # Examples:
@@ -12,4 +14,5 @@ urlpatterns = patterns('',
     url( r'^', include( 'checklist.urls', namespace='checklist' ) ),
 )
 
+urlpatterns += static( settings.STATIC_URL, document_root=settings.STATIC_ROOT )
 urlpatterns += dh5bp_urls
