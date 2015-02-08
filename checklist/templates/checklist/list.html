@@ -3,7 +3,9 @@
 
 {% block content %}
   {% for section in sections %}
-    {{ section.name }}<br />
+  <div class=".section">
+    <div class=".section-header">{{ section.name }}</div>
+  </div>
 
     {% for entry in section.entries %}
       &nbsp;&nbsp;&nbsp;{{ entry.name }} <br /> 
