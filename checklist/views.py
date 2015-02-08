@@ -15,14 +15,17 @@ def checklist( request, cid ):
     context = { }
     list = Checklist.objects.get( id=cid )
     sections = ChecklistSection.objects.filter( checklist_id=cid )
-    for section in sections.all( ):
+    sections = sections.all( )
+    for section in sections:
         #FIXME: ordering probably
         entries = ChecklistEntry.objects.filter( section_id=section.id )
-        context[section.name] = [ ]
+        section.entries = [ ] 
         for entry in entries:
-            context[section.name].append( entry.name )
+            section.entries.append( entry )
     
-    context = RequestContext( request, { 'checklist': context } )
+    context = RequestContext( request, { 'sections': sections } )
+    
+    print( sections )
 
     template = loader.get_template( 'checklist/list.html' )
     return HttpResponse( template.render( context ) )

@@ -1,3 +1,11 @@
-{% load staticfiles %}
 {% extends 'checklist/base.html' %}
-Content here
+{% load staticfiles %}
+
+{% for section in sections %}
+  {{ section.name }}<br />
+
+  {% for entry in section %}
+    {{ entry.name }} <br /> 
+  {% endfor
+{% endfor %} 
+
