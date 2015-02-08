@@ -44,4 +44,4 @@ docs/_build/
 # PyBuilder
 target/
 
-.sqlite3
+*.sqlite3

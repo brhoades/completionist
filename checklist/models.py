@@ -17,6 +17,7 @@ class Checklist( models.Model ):
 class ChecklistSection( Sortable ):
     class Meta( Sortable.Meta ):
         pass
+
     checklist = models.ForeignKey( Checklist )
 
     name = models.CharField( max_length=100 )
