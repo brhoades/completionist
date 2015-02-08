@@ -1,24 +1,25 @@
 {% load staticfiles %}
-<?xml version="1.0" encoding="iso-8859-1"?>
- <!DOCTYPE html 
-   PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
- <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-   <head>
-     <title>
-     </title>
 
-     <link rel="stylesheet" type="text/css" href="{% static 'checklist/css/main.css' %}"> 
-     <link rel="stylesheet" type="text/css" href="{% static 'checklist/css/normalize.css' %}"> 
-     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
+<!DOCTYPE html>
+<html lang="en">
 
-     <script src="{% static 'checklist/js/main.js' %}"></script>
-     <script src="{% static 'checklist/js/plugins.js' %}"></script>
-     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-   </head>
-   <body>
-    <div id="content" class="container-fluid">
-      {% block content %} {% endblock content %}
-    </div>
-   </body>
- </html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>{% block title %}Default{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'checklist/css/main.css' %}"> 
+  <link rel="stylesheet" type="text/css" href="{% static 'checklist/css/normalize.css' %}"> 
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
+  {% block header %}{% endblock %}
+</head>
+
+<body>
+  <div id="content" class="container-fluid">
+    {% block content %}{% endblock %}
+  </div>
+
+  {% block js %}{% endblock %}
+</body>
+</html>
