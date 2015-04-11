@@ -1,0 +1,9 @@
+{
+    "configs" : {
+        "base" : {
+            "location" : "/home/aaron/completionist",
+            "script" : "./update.sh",
+            "branch" : "master",
+        },
+    }
+}
