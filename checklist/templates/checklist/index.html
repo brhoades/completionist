@@ -5,7 +5,7 @@
   {% if checklists %}
   <ul>
     {% for checklist in checklists %}
-      <li><a href="/cl/{{ checklist.id }}/">{{ checklist.name }}</a></li>
+      <a href="/cl/{{ checklist.id }}/">{{ checklist.name }}</a> &nbsp; &nbsp; <a href="/newrun/{{ checklist.id }}/">Run This</a><br />
     {% endfor %}
   </ul>
   {% else %}
@@ -19,10 +19,12 @@
     {% for run in runs %}
       <a href="/run/{{ run.id }}/">{{ run.name }}</a> &nbsp; &nbsp; {{ run.checkListName }}<br />
         &nbsp; Run Create: {{ run.createDate }}<br />
-        {% if run.end != 0 %}
+        {% if run.end != None %}
           &nbsp; Run Status: Finished {{ run.endDate }}<br />
-        {% else %}
+        {% elif run.lastUpdate != run.createDate %}
           &nbsp; Run Status: In Progress (last update: {{ run.lastUpdate }}) <br />
+        {% else %}
+          &nbsp; Run Status: In Progress (unused) <br />
         {% endif %}
       <br />
     {% endfor %} 

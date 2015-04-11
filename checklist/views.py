@@ -1,13 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 
+from checklist.forms import RunForm
 from checklist.models import Checklist, ChecklistSection, ChecklistEntry, Run
+
+from datetime import datetime
 
 
 def index(request):
     checklists = Checklist.objects.order_by('-createDate')
-    runs       = Run.objects.order_by('-lastUpdate') 
+    runs       = Run.objects.order_by('lastUpdate') 
     template = loader.get_template('checklist/index.html')
     context = RequestContext(request, {'checklists': checklists, 'runs': runs })
 
@@ -33,6 +36,23 @@ def checklist(request, cid):
     template = loader.get_template('checklist/list.html')
     return HttpResponse(template.render(context))
 
+def newRun(request, cid):
+    checklist = Checklist.objects.get(id=cid)
+    if request.method == "POST":
+        form = RunForm(request.POST)
+        if form.is_valid():
+            new_run = form.save(commit=False)
+            new_run.checklist_id = checklist.id
+            new_run.owner_id = 0
+            new_run.save()
+            return redirect('/')
+        else:
+            variables = RequestContext(request, {'formset': form, 'checklist': checklist.name})
+            return render_to_response('checklist/run_form.html', variables)
+    else:
+        form = RunForm(initial={'publisher': request.user})
+    variables = RequestContext(request, {'formset': form, 'game': checklist.name})
+    return render_to_response('checklist/run_form.html', variables)
 
 def check(request, run_id, entry_id):
     entry = ChecklistEntry.objects.get(id=entry_id)

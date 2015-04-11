@@ -1,0 +1,13 @@
+.section {
+ min-height: 300px;
+ background: lightGrey; 
+ -moz-border-radius: 6px;  
+ margin: 5px 5px 5px 5px;
+}
+
+.section-header {
+ //background: @brand-warning;
+ -moz-border-radius: 6px 6px 0 0;   
+}
+
+

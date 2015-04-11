@@ -1,0 +1,16 @@
+{% extends 'checklist/base.html' %}
+{% load staticfiles %}
+{% block title %}Completionist - Checklists{% endblock %}
+{% block content %}
+<h2>{{ game }}</h2>
+<br />
+
+<h3>New Run</h3><br />
+
+<form method="post" action="">
+  {% csrf_token %}
+  {{ formset }}
+  <br /> <br />
+  <input type="submit" value="Create Run" />
+</form>
+{% endblock content %}
