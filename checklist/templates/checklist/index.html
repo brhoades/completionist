@@ -11,5 +11,24 @@
   {% else %}
     <p>No checklists are added.</p>
   {% endif %}
+  
+  <br /> <br /> <br />
+
+  {% if runs %}
+  <ul>
+    {% for run in runs %}
+      <a href="/run/{{ run.id }}/">{{ run.name }}</a> &nbsp; &nbsp; {{ run.checkListName }}<br />
+        &nbsp; Run Create: {{ run.createDate }}<br />
+        {% if run.end != 0 %}
+          &nbsp; Run Status: Finished {{ run.endDate }}<br />
+        {% else %}
+          &nbsp; Run Status: In Progress (last update: {{ run.lastUpdate }}) <br />
+        {% endif %}
+      <br />
+    {% endfor %} 
+  {% else %}
+    You have no runs <br />
+  {% endif %}
+
 {% endblock %}
 

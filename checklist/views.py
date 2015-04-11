@@ -31,3 +31,10 @@ def checklist(request, cid):
 
     template = loader.get_template('checklist/list.html')
     return HttpResponse(template.render(context))
+
+
+def check(request, run_id, entry_id):
+    entry = ChecklistEntry.objects.get(id=entry_id)
+
+    context = RequestContext(request, {'sections': sections})
+    return HttpResponse(template.render(context))

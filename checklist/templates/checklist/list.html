@@ -3,11 +3,12 @@
 
 {% block content %}
   {% for section in sections %}
-  <div class="row">
+  <div id="{{section.name}}" class="row">
     <div class="section col-md-6 img-rounded">
       <div class="section-header">{{ section.name }}</div>
 
       {% for entry in section.entries %}
+        <input type="checkbox" class="checkbox-complete" id="{{ entry.id }}" value="{{ section.id }}" name="{{ entry.name }}" /> 
         &nbsp;&nbsp;&nbsp;{{ entry.name }} <br /> 
       {% endfor %}
       </div>
