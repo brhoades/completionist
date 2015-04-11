@@ -2,13 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 
-from checklist.models import Checklist, ChecklistSection, ChecklistEntry
+from checklist.models import Checklist, ChecklistSection, ChecklistEntry, Run
 
 
 def index(request):
     checklists = Checklist.objects.order_by('-createDate')
+    runs       = Run.objects.order_by('-lastUpdate') 
     template = loader.get_template('checklist/index.html')
-    context = RequestContext(request, {'checklists': checklists})
+    context = RequestContext(request, {'checklists': checklists, 'runs': runs })
 
     return HttpResponse(template.render(context))
 
