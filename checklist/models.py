@@ -41,7 +41,7 @@ class ChecklistEntry( Sortable ):
 
 class Run( models.Model ):
     createDate = models.DateTimeField( auto_now_add=True )
-    endDate =    models.DateTimeField( )
+    endDate =    models.DateTimeField( blank=True )
     lastUpdate = models.DateTimeField( auto_now=True )
 
     name = models.CharField( max_length=100 )
