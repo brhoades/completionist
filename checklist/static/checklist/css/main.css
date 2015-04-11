@@ -303,20 +303,3 @@ textarea {
     }
 }
 
-/*****
- * My Shit
- *****/
-.section {
- width:500px;
- height:300px;
- background:lightGrey; 
- -moz-border-radius:6px;  
-}
-
-.section-header {
- background:green;
- padding:5px;
- -moz-border-radius:6px 6px 0 0;   
-}
-
-

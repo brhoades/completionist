@@ -3,13 +3,16 @@
 
 {% block content %}
   {% for section in sections %}
-  <div class=".section">
-    <div class=".section-header">{{ section.name }}</div>
-  </div>
+  <div class="row">
+    <div class="section col-md-6 img-rounded">
+      <div class="section-header">{{ section.name }}</div>
 
-    {% for entry in section.entries %}
-      &nbsp;&nbsp;&nbsp;{{ entry.name }} <br /> 
-    {% endfor %}
+      {% for entry in section.entries %}
+        &nbsp;&nbsp;&nbsp;{{ entry.name }} <br /> 
+      {% endfor %}
+      </div>
+    </div>
+  </div>
   {% endfor %} 
 {% endblock content %}
 

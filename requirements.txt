@@ -1,3 +1,5 @@
 django==1.7.4
 django-admin-sortable
 pillow
+django-libsass
+django-compressor

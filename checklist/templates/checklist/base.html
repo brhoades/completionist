@@ -1,3 +1,4 @@
+{% load compress %}
 {% load staticfiles %}
 
 <!DOCTYPE html>
@@ -9,9 +10,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>{% block title %}Default{% endblock %}</title>
+  <script src="bootstrap/js/bootstrap.js"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'checklist/css/main.css' %}"> 
   <link rel="stylesheet" type="text/css" href="{% static 'checklist/css/normalize.css' %}"> 
-  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
+  {% compress css %}
+  <link rel="stylesheet" type="text/scss" href="{% static "bootstrap/css/_bootstrap.scss" %}" />
+  <link rel="stylesheet" type="text/scss" href="{% static "checklist/css/completionist.scss" %}" />
+  {% endcompress %}
   {% block header %}{% endblock %}
 </head>
 

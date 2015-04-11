@@ -38,7 +38,22 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'checklist',
     'adminsortable',
+    'compressor'
 )
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_PRECOMPILERS = (
+        ('text/scss', 'sass --scss {infile} {outfile}'),
+)
+
+
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
