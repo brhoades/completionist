@@ -29,6 +29,10 @@ ALLOWED_HOSTS = [ '192.168.1.132']
 
 # Application definition
 
+#LOGIN_REDIRECT_URL = '/'
+
+#LOGIN_URL = 'django.contrib.auth.views.login'
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -101,7 +105,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/

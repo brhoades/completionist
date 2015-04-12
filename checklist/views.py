@@ -76,3 +76,30 @@ def check(request, run_id, entry_id):
 
     context = RequestContext(request, {'sections': sections})
     return HttpResponse(template.render(context))
+
+
+"""
+
+AUTHENTICATION
+
+
+def authuser(request):
+    if 'username' in request.post and 'password' in request.post:
+        username = request.post['username']
+        password = request.post['password']
+        user = authenticate(username, password)
+        context = None
+        template = loader.get_template('checklist/login.html')
+        return HttpResponse(template.render(context))
+
+        if user is not None:
+            if user.is_active: #GOOD
+                login(request, user)
+                return redirect('/')
+            else: #INACTIVE
+                context = RequestContext(request, {'message': "Account is disabled or inactive" })
+        else:
+            context = RequestContext(request, {'message': "Invalid credentials provided" })
+
+        return HttpResponse(template.render(context))
+"""
