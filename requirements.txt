@@ -4,3 +4,4 @@ pillow
 django-libsass
 django-compressor
 django-registration-redux
+psycopg2

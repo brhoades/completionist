@@ -16,7 +16,6 @@ $(document).ready(function() {
                   alert( $(this).attr('value') );
                 }
             }); 
-      $('.checkbox').unbind();
         return false;
 
     }); 
