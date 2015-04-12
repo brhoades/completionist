@@ -1,5 +1,10 @@
 {% load compress %}
 {% load staticfiles %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,9 +20,10 @@
   <script src="{% static 'checklist/js/main.js' %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'checklist/css/main.css' %}"> 
   <link rel="stylesheet" type="text/css" href="{% static 'checklist/css/normalize.css' %}"> 
+
   {% compress css %}
-  <link rel="stylesheet" type="text/scss" href="{% static "bootstrap/css/_bootstrap.scss" %}" />
-  <link rel="stylesheet" type="text/scss" href="{% static "checklist/css/completionist.scss" %}" />
+  <!-- <link rel="stylesheet" type="text/scss" href="{% static "bootstrap/css/_bootstrap.scss" %}" />
+  <link rel="stylesheet" type="text/scss" href="{% static "checklist/css/completionist.scss" %}" /> !-->
   {% endcompress %}
   {% block header %}{% endblock %}
 </head>

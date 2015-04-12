@@ -43,7 +43,8 @@ INSTALLED_APPS = (
     'checklist',
     'adminsortable',
     'compressor',
-    'registration'
+    'registration',
+    'bootstrap3'
 )
 
 STATICFILES_FINDERS = (

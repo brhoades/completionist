@@ -1,9 +1,10 @@
 {% extends 'checklist/base.html' %}
 {% load staticfiles %}
 {% block title %}Completionist - Checklists{% endblock %}
+{% load bootstrap3 %}
 {% block content %}
 
-<h2>Checklists</h2><br />
+<h2>Checklists &nbsp;<a href="#" class="h5" style="color:green">{% bootstrap_icon "plus" %}</a></h2><br />
   {% if checklists %}
   <ul>
     {% for checklist in checklists %}
