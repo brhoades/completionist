@@ -116,5 +116,9 @@ def check(request, rid, eid):
 
         prog.save( )
 
+        run.lastUpdate = datetime.now( )
+        run.save( )
+        
+
     context = {'state': prog.checked, 'message': message}
     return HttpResponse(json.dumps(context))
