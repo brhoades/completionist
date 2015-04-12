@@ -79,7 +79,6 @@ def run(request, rid):
                 entry.checked = prog.checked
             except:
                 pass
-            entry.checked = prog.checked 
             section.entries.append(entry)
 
     context = RequestContext(request, {'sections': sections, 'rid': rid})
