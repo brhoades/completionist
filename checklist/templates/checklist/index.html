@@ -24,17 +24,12 @@
     {% for run in runs %}
       <a class="h4" href="/run/{{ run.id }}/">{{ run.name }}</a> &nbsp; &nbsp;{{ run.checkListName }}
         &nbsp; &nbsp;
-        &nbsp; &nbsp;
-        &nbsp; &nbsp;
-        &nbsp; &nbsp;
-        &nbsp; &nbsp;
-        &nbsp; &nbsp;
         {% if run.end != None %}
           <span class="label label-success">Finished</span>
         {% else %}
           <span class="label label-warning"><small>In Progress</small></span>
         {% endif %}
-        <br />
+        <br /> <br />
         {% if run.owner %}
         &nbsp; &nbsp;Owner: {{ run.owner.username }}<br />
         {% endif %}
@@ -46,6 +41,11 @@
           &nbsp; &nbsp;Last Update: {{ run.lastUpdate }}<br />
         {% endif %}
       <br />
+      <div class="progress" style="width: 30%;">
+        <div class="progress-bar" role="progressbar" style="width: {{ run.progress }}%;">
+          {{ run.progress }}%
+        </div>
+      </div>
     {% endfor %} 
   {% else %}
     You have no runs <br />

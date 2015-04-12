@@ -18,8 +18,18 @@ def index(request):
         runs = Run.objects.filter(owner=request.user.id).order_by('-lastUpdate', 'createDate') 
     else:
         runs = Run.objects.order_by('-lastUpdate', 'createDate') 
-        for run in runs:
-            run.owner = User.objects.get(id=run.owner_id)
+    for run in runs:
+        run.owner = User.objects.get(id=run.owner_id)
+        sections = ChecklistSection.objects.filter(checklist_id=run.checklist_id)
+        total = 0
+        for section in sections:
+           total += ChecklistEntry.objects.filter(section_id=section.id).count( )
+        progress = RunProgress.objects.filter(run_id=run.id).count( )
+        if total == 0:
+            total = 1
+            progress = 0
+        run.progress = "{:04.2f}".format(progress / total * 100)
+
     template = loader.get_template('checklist/index.html')
     context = RequestContext(request, {'checklists': checklists, 'runs': runs, 'user': request.user })
 
