@@ -6,3 +6,4 @@ django-compressor
 django-registration-redux
 psycopg2
 django-bootstrap3
+pytz

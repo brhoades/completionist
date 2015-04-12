@@ -8,7 +8,7 @@ from checklist.forms import RunForm
 from checklist.models import Checklist, ChecklistSection, ChecklistEntry, Run, RunProgress
 
 from datetime import datetime
-import json
+import json, pytz
 
 
 def index(request):
@@ -122,3 +122,10 @@ def check(request, rid, eid):
 
     context = {'state': prog.checked, 'message': message}
     return HttpResponse(json.dumps(context))
+
+def profile(request):
+    if request.method == 'POST':
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/')
+    else:
+        return render(request, 'registration/profile.html', {'timezones': pytz.common_timezones})
