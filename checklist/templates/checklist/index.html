@@ -2,6 +2,14 @@
 {% load staticfiles %}
 {% block title %}Completionist - Checklists{% endblock %}
 {% block content %}
+{% if user.is_authenticated %}
+  <a href="{% url 'auth:logout' %}">Logout</a>
+{% else %}
+  <a href="{% url 'auth:login' %}">Login</a> &nbsp; &nbsp;
+  <a href="{% url 'registration_register' %}">Register</a>
+{% endif %}
+<br /> <br />
+
 <h2>Checklists</h2><br />
   {% if checklists %}
   <ul>
