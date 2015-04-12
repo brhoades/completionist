@@ -14,7 +14,7 @@ def index(request):
     runs = None
     checklists = Checklist.objects.order_by('-createDate')
     if request.user.is_authenticated():
-        runs = Run.get(owner=request.user.id).order_by('-lastUpdate', 'createDate') 
+        runs = Run.objects.filter(owner=request.user.id).order_by('-lastUpdate', 'createDate') 
     else:
         runs = Run.objects.order_by('-lastUpdate', 'createDate') 
         for run in runs:
