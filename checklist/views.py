@@ -72,6 +72,14 @@ def run(request, rid):
         entries = ChecklistEntry.objects.filter(section_id=section.id)
         section.entries = []
         for entry in entries:
+            entry.checked = False
+            try:
+                # grab owner's check status
+                prog = RunProgress.objects.get(run_id=rid,entry_id=entry.id)
+                entry.checked = prog.checked
+            except:
+                pass
+            entry.checked = prog.checked 
             section.entries.append(entry)
 
     context = RequestContext(request, {'sections': sections, 'rid': rid})
