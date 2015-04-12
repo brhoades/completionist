@@ -50,7 +50,7 @@ def newRun(request, cid):
         if form.is_valid():
             new_run = form.save(commit=False)
             new_run.checklist_id = checklist.id
-            new_run.owner_id = 0
+            new_run.owner_id = request.user.id
             new_run.save()
             return redirect('/')
         else:
