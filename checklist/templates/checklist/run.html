@@ -8,7 +8,7 @@
       <div class="section-header">{{ section.name }}</div>
 
       {% for entry in section.entries %}
-        <div id="checkbox" value="{{ rid }}/{{ entry.id }}/" >
+        <div class="checkbox-container" value="{{ rid }}/{{ entry.id }}/" >
           <input type="checkbox" class="checkbox" /> 
           &nbsp;&nbsp;&nbsp;{{ entry.name }} <br /> 
         </div>

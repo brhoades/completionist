@@ -1,5 +1,5 @@
 $(document).ready(function() {           
-    $('#checkbox').click(function(evt) {                           
+    $('.checkbox-container').click(function(evt) {                           
             $.ajax(
                 '/check/' + $(this).attr('value'),
                 { 
