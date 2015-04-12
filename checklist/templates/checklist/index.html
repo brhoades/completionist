@@ -24,10 +24,8 @@
         &nbsp; Run Create: {{ run.createDate }}<br />
         {% if run.end != None %}
           &nbsp; Run Status: Finished {{ run.endDate }}<br />
-        {% elif run.lastUpdate != run.createDate %}
-          &nbsp; Run Status: In Progress (last update: {{ run.lastUpdate }}) <br />
         {% else %}
-          &nbsp; Run Status: In Progress (unused) <br />
+          &nbsp; Run Status: In Progress (last update: {{ run.lastUpdate }}) <br />
         {% endif %}
       <br />
     {% endfor %} 

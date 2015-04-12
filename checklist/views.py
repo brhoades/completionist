@@ -31,8 +31,6 @@ def checklist(request, cid):
 
     context = RequestContext(request, {'sections': sections})
 
-    print(sections)
-
     template = loader.get_template('checklist/list.html')
     return HttpResponse(template.render(context))
 
@@ -53,6 +51,25 @@ def newRun(request, cid):
         form = RunForm(initial={'publisher': request.user})
     variables = RequestContext(request, {'formset': form, 'game': checklist.name})
     return render_to_response('checklist/run_form.html', variables)
+
+def run(request, rid):
+    context = {}
+    run = Run.objects.get(id=rid)
+    list = Checklist.objects.get(id=run.checklist_id)
+    sections = ChecklistSection.objects.filter(checklist_id=list.id)
+    sections = sections.all()
+    for section in sections:
+        # FIXME: ordering probably
+        entries = ChecklistEntry.objects.filter(section_id=section.id)
+        section.entries = []
+        for entry in entries:
+            section.entries.append(entry)
+
+    context = RequestContext(request, {'sections': sections})
+
+    template = loader.get_template('checklist/run.html')
+    return HttpResponse(template.render(context))
+    
 
 def check(request, run_id, entry_id):
     entry = ChecklistEntry.objects.get(id=entry_id)

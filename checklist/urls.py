@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     url(r'^cl/(\d+)/$', views.checklist),
     url(r'^check/(\d+)/(\d+)/$', views.check),
     url(r'^newrun/(\d+)/$', views.newRun),
+    url(r'^run/(\d+)/$', views.run),
 )
