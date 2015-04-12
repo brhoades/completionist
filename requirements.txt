@@ -3,3 +3,4 @@ django-admin-sortable
 pillow
 django-libsass
 django-compressor
+django-registration-redux

@@ -40,9 +40,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'checklist',
     'adminsortable',
-    'compressor'
+    'compressor',
+    'registration'
 )
 
 STATICFILES_FINDERS = (
@@ -105,6 +107,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+ACCOUNT_ACTIVATION_DAYS=31
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
