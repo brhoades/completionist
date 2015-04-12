@@ -1,6 +1,8 @@
 from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse
 from django.template import RequestContext, loader
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from checklist.forms import RunForm
 from checklist.models import Checklist, ChecklistSection, ChecklistEntry, Run
@@ -9,13 +11,18 @@ from datetime import datetime
 
 
 def index(request):
+    runs = None
     checklists = Checklist.objects.order_by('-createDate')
-    runs       = Run.objects.order_by('-lastUpdate', 'createDate') 
+    if request.user.is_authenticated():
+        runs = Run.get(owner=request.user.id).order_by('-lastUpdate', 'createDate') 
+    else:
+        runs = Run.objects.order_by('-lastUpdate', 'createDate') 
+        for run in runs:
+            run.owner = User.objects.get(id=run.owner_id)
     template = loader.get_template('checklist/index.html')
-    context = RequestContext(request, {'checklists': checklists, 'runs': runs })
+    context = RequestContext(request, {'checklists': checklists, 'runs': runs, 'user': request.user })
 
     return HttpResponse(template.render(context))
-
 
 def checklist(request, cid):
     context = {}
@@ -34,6 +41,7 @@ def checklist(request, cid):
     template = loader.get_template('checklist/list.html')
     return HttpResponse(template.render(context))
 
+@login_required
 def newRun(request, cid):
     checklist = Checklist.objects.get(id=cid)
     if request.method == "POST":
@@ -70,7 +78,7 @@ def run(request, rid):
     template = loader.get_template('checklist/run.html')
     return HttpResponse(template.render(context))
     
-
+@login_required
 def check(request, run_id, entry_id):
     entry = ChecklistEntry.objects.get(id=entry_id)
 

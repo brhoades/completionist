@@ -29,7 +29,7 @@ ALLOWED_HOSTS = [ '192.168.1.132']
 
 # Application definition
 
-#LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 #LOGIN_URL = 'django.contrib.auth.views.login'
 

@@ -9,8 +9,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url( r'^admin/', include( admin.site.urls ) ),
-    url( r'^cl/', include( 'checklist.urls', namespace='checklist' ) ),
-    url( r'^', include( 'checklist.urls', namespace='checklist' ) ),
+    url( r'^', include( 'checklist.urls' ) ),
 )
 
 urlpatterns += static( settings.STATIC_URL, document_root=settings.STATIC_ROOT )

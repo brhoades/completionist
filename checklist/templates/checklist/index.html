@@ -21,11 +21,16 @@
   <ul>
     {% for run in runs %}
       <a href="/run/{{ run.id }}/">{{ run.name }}</a> &nbsp; &nbsp; {{ run.checkListName }}<br />
-        &nbsp; Run Create: {{ run.createDate }}<br />
+        {% if run.owner %}
+        &nbsp; &nbsp;Owner: {{ run.owner.username }}<br />
+        {% endif %}
+        &nbsp; &nbsp;Run Create: {{ run.createDate }}<br />
+        
         {% if run.end != None %}
-          &nbsp; Run Status: Finished {{ run.endDate }}<br />
+          &nbsp; &nbsp;Run Status: Finished {{ run.endDate }}<br />
         {% else %}
-          &nbsp; Run Status: In Progress (last update: {{ run.lastUpdate }}) <br />
+          &nbsp; &nbsp;Last Update: {{ run.lastUpdate }}<br />
+          &nbsp; &nbsp;Run Status: In Progress <br />
         {% endif %}
       <br />
     {% endfor %} 
