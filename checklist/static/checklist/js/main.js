@@ -1,15 +1,16 @@
 $(document).ready(function() {           
-    $('.checkbox-complete').click(function() {                           
-            $.ajax({ 
-                data: $(this).serialize(), 
-                type: $(this).attr('name'), 
-                url: '/check/' + $(this).attr('value') + '/' + $(this).attr('id'), 
+    $('.checkbox').click(function(evt) {                           
+            $.ajax(
+                '/check/' + $(evt.target).parent().attr('value'),
+                { 
+                dataType: 'json',
                 // /check/runid/entryid/
                 success: function(response) { 
-                  alert("YES");
+                  $(evt.target).prop('checked',response['state']);
                 },
                 error: function(e, x, r) { 
-                  alert("NO");
+                  alert("Failed");
+                  alert( $(evt.target).parent().attr('value') );
                 }
             }); 
         return false;

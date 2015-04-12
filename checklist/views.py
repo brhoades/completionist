@@ -5,9 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from checklist.forms import RunForm
-from checklist.models import Checklist, ChecklistSection, ChecklistEntry, Run
+from checklist.models import Checklist, ChecklistSection, ChecklistEntry, Run, RunProgress
 
 from datetime import datetime
+import json
 
 
 def index(request):
@@ -73,41 +74,30 @@ def run(request, rid):
         for entry in entries:
             section.entries.append(entry)
 
-    context = RequestContext(request, {'sections': sections})
+    context = RequestContext(request, {'sections': sections, 'rid': rid})
 
     template = loader.get_template('checklist/run.html')
     return HttpResponse(template.render(context))
     
 @login_required
-def check(request, run_id, entry_id):
-    entry = ChecklistEntry.objects.get(id=entry_id)
+def check(request, rid, eid):
+    """
+       Entry is checked via AJAX
+    """
+    prog = None
+    run = Run.objects.get(id=rid)
+    message = ""
+    if request.user.id != run.owner_id:
+        message = "You do not own this list." 
 
-    context = RequestContext(request, {'sections': sections})
-    return HttpResponse(template.render(context))
+    if message == "":
+        try:
+            prog = RunProgress.objects.get(run_id=rid, entry_id=eid)
+            prog.checked = not prog.checked
+        except:
+            prog = RunProgress.objects.create(run_id=rid, entry_id=eid) 
 
+        prog.save( )
 
-"""
-
-AUTHENTICATION
-
-
-def authuser(request):
-    if 'username' in request.post and 'password' in request.post:
-        username = request.post['username']
-        password = request.post['password']
-        user = authenticate(username, password)
-        context = None
-        template = loader.get_template('checklist/login.html')
-        return HttpResponse(template.render(context))
-
-        if user is not None:
-            if user.is_active: #GOOD
-                login(request, user)
-                return redirect('/')
-            else: #INACTIVE
-                context = RequestContext(request, {'message': "Account is disabled or inactive" })
-        else:
-            context = RequestContext(request, {'message': "Invalid credentials provided" })
-
-        return HttpResponse(template.render(context))
-"""
+    context = {'state': prog.checked, 'message': message}
+    return HttpResponse(json.dumps(context))
