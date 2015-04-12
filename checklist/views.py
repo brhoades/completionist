@@ -10,7 +10,7 @@ from datetime import datetime
 
 def index(request):
     checklists = Checklist.objects.order_by('-createDate')
-    runs       = Run.objects.order_by('lastUpdate') 
+    runs       = Run.objects.order_by('-lastUpdate', 'createDate') 
     template = loader.get_template('checklist/index.html')
     context = RequestContext(request, {'checklists': checklists, 'runs': runs })
 

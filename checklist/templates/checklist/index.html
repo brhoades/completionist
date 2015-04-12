@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block title %}Completionist - Checklists{% endblock %}
 {% block content %}
+<h2>Checklists</h2><br />
   {% if checklists %}
   <ul>
     {% for checklist in checklists %}
@@ -13,6 +14,8 @@
   {% endif %}
   
   <br /> <br /> <br />
+
+<h2>Runs</h2><br />
 
   {% if runs %}
   <ul>
