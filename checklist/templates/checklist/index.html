@@ -24,8 +24,8 @@
     {% for run in runs %}
       <a class="h4" href="/run/{{ run.id }}/">{{ run.name }}</a> &nbsp; &nbsp;{{ run.checkListName }}
         &nbsp; &nbsp;
-        {% if run.end != None %}
-          <span class="label label-success">Finished</span>
+        {% if run.endDate != None %}
+          <span class="label label-success"><small>Finished</small></span>
         {% else %}
           <span class="label label-warning"><small>In Progress</small></span>
         {% endif %}
@@ -35,7 +35,7 @@
         {% endif %}
         &nbsp; &nbsp;Run Create: {{ run.createDate }}<br />
         
-        {% if run.end != None %}
+        {% if run.endDate != None %}
           &nbsp; &nbsp;Completed at: {{ run.endDate }}<br />
         {% else %}
           &nbsp; &nbsp;Last Update: {{ run.lastUpdate }}<br />

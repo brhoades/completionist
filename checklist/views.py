@@ -24,7 +24,7 @@ def index(request):
         total = 0
         for section in sections:
            total += ChecklistEntry.objects.filter(section_id=section.id).count( )
-        progress = RunProgress.objects.filter(run_id=run.id).count( )
+        progress = RunProgress.objects.filter(run_id=run.id,checked=True).count( )
         if total == 0:
             total = 1
             progress = 0
@@ -105,7 +105,7 @@ def check(request, rid, eid):
     run = Run.objects.get(id=rid)
     message = ""
     if request.user.id != run.owner_id:
-        message = "You do not own this list." 
+        message = "You do not own this run." 
 
     if message == "":
         try:
@@ -114,9 +114,15 @@ def check(request, rid, eid):
         except:
             prog = RunProgress.objects.create(run_id=rid, entry_id=eid) 
 
+        prog.completed = datetime.now()
         prog.save( )
 
         run.lastUpdate = datetime.now( )
+        if RunProgress.objects.filter(id=rid,checked=False).count() == 0:
+            run.endDate = datetime.now()
+        else:
+            run.endDate = None
+
         run.save( )
         
 
