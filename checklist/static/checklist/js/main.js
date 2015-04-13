@@ -10,8 +10,8 @@ $(document).ready(function() {
                   $(evt.target).prop('checked',response['state']);
                 },
                 error: function(e, x, r) { 
-                  alert("Failed" + $(evt.target).parent().attr('value'));
-                  alert( $(evt.target).prop('tagName') );
+                  alert("Error, you are not logged in.");
+                  $(evt.target).prop('checked',!$(evt.target).prop('checked'));
                 }
             }); 
         return false;
