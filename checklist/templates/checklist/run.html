@@ -10,12 +10,11 @@
       {% for entry in section.entries %}
         <div class="checkbox-container" value="{{ rid }}/{{ entry.id }}/" >
           {% if entry.checked %}
-            <input type="checkbox" class="checkbox" checked="{{ entry.checked }}" /> 
+            <input type="checkbox" class="checkbox" style="display: inline;" checked="{{ entry.checked }}" id="{{ entry.id }}"> 
           {% else %}
-            <input type="checkbox" class="checkbox" /> 
+            <input type="checkbox" class="checkbox" style="display: inline;" id="{{ entry.id }}"> 
           {% endif %}
-                
-          &nbsp;&nbsp;&nbsp;{{ entry.name }} <br /> 
+          <label style="display: inline-block;" for="{{ entry.id }}">{{ entry.name }}</label><br /> 
         </div>
       {% endfor %}
       </div>
